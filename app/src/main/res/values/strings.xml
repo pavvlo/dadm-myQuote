@@ -1,0 +1,22 @@
+<resources>
+    <string name="about">About</string>
+    <string name="about_pablo">Quotation Shake by\n\nPablo Mocholí\n\npabmocpl@inf.upv.es\n\n2021</string>
+    <string name="app_name">myQuote</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet consectetur adipiscing elit penatibus duis,
+        velit volutpat dignissim mi curae facilisi dictumst fringilla,
+        fermentum etiam convallis molestie primis venenatis eu faucibus.
+        Commodo arcu phasellus faucibus tristique litora donec, et lectus dictumst
+        interdum accumsan pretium aliquam, metus velit aptent id proin. Blandit quam
+        mi feugiat nam ut eros malesuada praesent, fusce molestie sapien tempor penatibus
+        proin aptent, ullamcorper fames orci netus risus arcu curabitur.
+    </string>
+
+    <string name="quote_fav">Favourite Quotations</string>
+    <string name="quote_get">Get Quotations</string>
+    <string name="quote_random">Random quotations</string>
+    <string name="quote_shake">QuotationShake</string>
+
+    <string name="settings">Settings</string>
+</resources>
