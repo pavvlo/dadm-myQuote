@@ -16,8 +16,8 @@ public class QuotationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quotation);
 
         TextView tvQuotation = findViewById(R.id.tvQuotation);
-        String data = tvQuotation.getText().toString().replaceAll("%1s", getString(R.string.sample_name));
-        tvQuotation.setText(data);
+        String data = tvQuotation.getText().toString();
+        tvQuotation.setText(data.replaceAll("%1s", getString(R.string.sample_name)));
 
         TextView tvAuthor = findViewById(R.id.tvAuthor);
         ImageButton refreshButton = findViewById(R.id.ibRefresh);
@@ -29,4 +29,5 @@ public class QuotationActivity extends AppCompatActivity {
             }
         });
     }
+
 }

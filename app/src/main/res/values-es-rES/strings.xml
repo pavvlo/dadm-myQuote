@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">myQuote</string>
+    <string name="about">Sobre nosotros</string>
+    <string name="author_info">Información sobre el autor</string>
+    <string name="quote_fav">Citas favoritas</string>
+    <string name="quote_get">Obtener citas</string>
+    <string name="quote_random">Citas aleatorias</string>
+    <string name="quote_shake">Coctelera de Citas</string>
+    <string name="refresh_label">Hola %1s! \n\n Pulsa Actualizar para obtener una cita nueva</string>
+    <string name="sample_author">Esto es un ejemplo de autor</string>
+    <string name="sample_name">Sin Nombre</string>
+    <string name="sample_quote">Esto es un ejemplo de cita</string>
+    <string name="settings">Ajustes</string>
+    <string name="settings_language_label">Las citas serán guardadas en el lenguaje seleccionado</string>
+    <string name="settings_method_label">Las peticiones web se realizarán con el método HTTP seleccionado</string>
+    <string name="settings_name_label">Nombre de identificación del usuario</string>
+    <string name="settings_name_text">Inserta tu nombre</string>
+    <string name="about_pablo">Coctelera de citas by \n\n Pablo Mocholí \n\n pabmocpl@inf.upv.es \n\n 2021</string>
+</resources>
