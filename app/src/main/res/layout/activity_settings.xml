@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvMethod"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -86,7 +86,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/tvMethod">
 
             <RadioButton
                 android:id="@+id/rbGet"
