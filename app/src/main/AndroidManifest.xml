@@ -11,7 +11,8 @@
         android:theme="@style/Theme.MyQuote">
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settings" />
+            android:label="@string/settings"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name=".AboutActivity"
             android:label="@string/about" />
