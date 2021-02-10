@@ -21,7 +21,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         Class activity = null;
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.bGetQuotes:
                 activity = QuotationActivity.class;
                 break;
@@ -36,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
                 break;
         }
 
-        if(activity != null) {
+        if (activity != null) {
             Intent intent = new Intent(this, activity);
             startActivity(intent);
         }

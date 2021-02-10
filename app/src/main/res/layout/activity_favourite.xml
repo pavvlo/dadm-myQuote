@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".FavouriteActivity">
 
+    <Button
+        android:id="@+id/bAuthorInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/author_info"
+        android:onClick="onAuthorInfoClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

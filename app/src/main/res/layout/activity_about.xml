@@ -29,6 +29,7 @@
             android:id="@+id/ivPabloLeft"
             android:layout_width="156dp"
             android:layout_height="209dp"
+            android:rotationY="180"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/pic" />
@@ -37,6 +38,7 @@
             android:id="@+id/ivPabloRight"
             android:layout_width="156dp"
             android:layout_height="209dp"
+            android:rotationY="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivPabloLeft"
