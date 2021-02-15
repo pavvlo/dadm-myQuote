@@ -17,4 +17,6 @@
     <string name="settings_name_label">Nombre de identificación del usuario</string>
     <string name="settings_name_text">Inserta tu nombre</string>
     <string name="about_pablo">Coctelera de citas by \n\n Pablo Mocholí \n\n pabmocpl@inf.upv.es \n\n 2021</string>
+    <string name="english">Inglés</string>
+    <string name="russian">Ruso</string>
 </resources>

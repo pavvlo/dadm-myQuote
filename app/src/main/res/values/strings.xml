@@ -7,6 +7,8 @@
     <string name="app_name">myQuote</string>
     <string name="author_info">Author info</string>
 
+    <string name="english">English</string>
+
     <string name="get" translatable="false">GET</string>
 
     <string name="lorem_ipsum" translatable="false">
@@ -27,6 +29,7 @@
     <string name="quote_shake">QuotationShake</string>
 
     <string name="refresh_label">Hello %1s! \n\n Press Refresh to get a new quotation</string>
+    <string name="russian">Russian</string>
 
     <string name="sample_author">This is a sample author</string>
     <string name="sample_name">Nameless One</string>
