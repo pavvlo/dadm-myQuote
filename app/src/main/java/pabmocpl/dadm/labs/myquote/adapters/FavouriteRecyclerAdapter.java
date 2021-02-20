@@ -16,7 +16,7 @@ import pabmocpl.dadm.labs.myquote.objects.Quotation;
 public class FavouriteRecyclerAdapter
         extends RecyclerView.Adapter<FavouriteRecyclerAdapter.ViewHolder> {
 
-    private static List<Quotation> data;
+    private List<Quotation> data;
     private OnItemClickListener clickListener;
 
     public FavouriteRecyclerAdapter(List<Quotation> data, OnItemClickListener clickListener) {
@@ -44,25 +44,32 @@ public class FavouriteRecyclerAdapter
         return data.size();
     }
 
-    public static Quotation getQuotationAt(int position){return data.get(position);}
+    public Quotation getQuotationAt(int position){return data.get(position);}
 
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvQuote;
         public TextView tvAuthorName;
 
         public ViewHolder(View view, OnItemClickListener listener) {
             super(view);
-            view.setOnClickListener(v -> listener.onItemClickListener(getAdapterPosition()));
             tvQuote = view.findViewById(R.id.tvRowQuote);
             tvAuthorName = view.findViewById(R.id.tvRowAuthor);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClickListener(FavouriteRecyclerAdapter.this, getAdapterPosition());
+                }
+            });
+
         }
     }
 
     public interface OnItemClickListener{
-        void onItemClickListener(int position);
+        void onItemClickListener(FavouriteRecyclerAdapter adapter, int position);
     }
 
 }

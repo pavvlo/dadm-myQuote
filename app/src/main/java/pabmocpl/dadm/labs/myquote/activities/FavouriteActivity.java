@@ -5,17 +5,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
 import pabmocpl.dadm.labs.myquote.R;
 import pabmocpl.dadm.labs.myquote.adapters.FavouriteRecyclerAdapter;
@@ -38,15 +35,15 @@ public class FavouriteActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         r.addItemDecoration(itemDecoration);
 
-        FavouriteRecyclerAdapter adapter = new FavouriteRecyclerAdapter(getMockQuotations(),
-                position -> onAuthorInfoClick(this, FavouriteRecyclerAdapter.getQuotationAt(position)));
-        r.setAdapter(adapter);
+        FavouriteRecyclerAdapter recyclerAdapter = new FavouriteRecyclerAdapter(getMockQuotations(),
+                (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)));
+        r.setAdapter(recyclerAdapter);
     }
 
-    public void onAuthorInfoClick(Context context, Quotation quotation) {
+    public void onAuthorInfoClick(Quotation quotation) {
         String authorName = URLEncoder.encode(quotation.getQuoteAuthor());
         if(authorName == ""){
-            Toast.makeText(context,R.string.toast_unknown_author, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_unknown_author, Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
