@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class FavouriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favourite);
 
 
+
         RecyclerView r = findViewById(R.id.rvFavourite);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -33,13 +35,18 @@ public class FavouriteActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         r.addItemDecoration(itemDecoration);
 
-        FavouriteRecyclerAdapter adapter = new FavouriteRecyclerAdapter(getMockQuotations());
+        FavouriteRecyclerAdapter adapter = new FavouriteRecyclerAdapter(getMockQuotations(),
+                new FavouriteRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int position) {
+                onAuthorInfoClick(FavouriteRecyclerAdapter.getQuotationAt(position));
+            }
+        });
         r.setAdapter(adapter);
     }
 
-
-    public void onAuthorInfoClick(View view) {
-        String authorName = "Elon Musk";
+    public void onAuthorInfoClick(Quotation quotation) {
+        String authorName = URLEncoder.encode(quotation.getQuoteAuthor());
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + authorName));

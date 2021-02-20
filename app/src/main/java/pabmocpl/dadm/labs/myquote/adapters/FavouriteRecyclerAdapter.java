@@ -16,10 +16,12 @@ import pabmocpl.dadm.labs.myquote.objects.Quotation;
 public class FavouriteRecyclerAdapter
         extends RecyclerView.Adapter<FavouriteRecyclerAdapter.ViewHolder> {
 
-    private List<Quotation> data;
+    private static List<Quotation> data;
+    private OnItemClickListener clickListener;
 
-    public FavouriteRecyclerAdapter(List<Quotation> data) {
+    public FavouriteRecyclerAdapter(List<Quotation> data, OnItemClickListener clickListener) {
         this.data = data;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -27,7 +29,7 @@ public class FavouriteRecyclerAdapter
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.quotation_list_row, parent, false);
-        FavouriteRecyclerAdapter.ViewHolder holder = new ViewHolder(view);
+        FavouriteRecyclerAdapter.ViewHolder holder = new ViewHolder(view, clickListener);
         return holder;
     }
 
@@ -42,16 +44,25 @@ public class FavouriteRecyclerAdapter
         return data.size();
     }
 
+    public static Quotation getQuotationAt(int position){return data.get(position);}
+
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvQuote;
         public TextView tvAuthorName;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, OnItemClickListener listener) {
             super(view);
-            tvQuote = (TextView) view.findViewById(R.id.tvRowQuote);
-            tvAuthorName = (TextView) view.findViewById(R.id.tvRowAuthor);
+            view.setOnClickListener(v -> listener.onItemClickListener(getAdapterPosition()));
+            tvQuote = view.findViewById(R.id.tvRowQuote);
+            tvAuthorName = view.findViewById(R.id.tvRowAuthor);
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClickListener(int position);
     }
 
 }
