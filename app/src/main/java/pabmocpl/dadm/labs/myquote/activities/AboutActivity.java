@@ -1,14 +1,16 @@
-package pabmocpl.dadm.labs.myquote;
+package pabmocpl.dadm.labs.myquote.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SettingsActivity extends AppCompatActivity {
+import pabmocpl.dadm.labs.myquote.R;
+
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_about);
     }
 }

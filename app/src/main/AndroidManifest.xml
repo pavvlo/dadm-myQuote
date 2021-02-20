@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyQuote">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/settings"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name=".AboutActivity"
+            android:name=".activities.AboutActivity"
             android:label="@string/about" />
         <activity
-            android:name=".QuotationActivity"
+            android:name=".activities.QuotationActivity"
             android:label="@string/quote_random" />
         <activity
-            android:name=".FavouriteActivity"
+            android:name=".activities.FavouriteActivity"
             android:label="@string/quote_fav" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".activities.DashboardActivity"
             android:label="@string/quote_shake">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

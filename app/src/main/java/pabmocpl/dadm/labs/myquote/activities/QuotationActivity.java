@@ -1,4 +1,4 @@
-package pabmocpl.dadm.labs.myquote;
+package pabmocpl.dadm.labs.myquote.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import pabmocpl.dadm.labs.myquote.R;
 
 public class QuotationActivity extends AppCompatActivity {
 
