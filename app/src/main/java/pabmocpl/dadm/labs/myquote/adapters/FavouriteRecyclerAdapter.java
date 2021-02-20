@@ -18,10 +18,13 @@ public class FavouriteRecyclerAdapter
 
     private List<Quotation> data;
     private OnItemClickListener clickListener;
+    private OnItemLongClickListener longClickListener;
 
-    public FavouriteRecyclerAdapter(List<Quotation> data, OnItemClickListener clickListener) {
+
+    public FavouriteRecyclerAdapter(List<Quotation> data, OnItemClickListener clickListener, OnItemLongClickListener longClickListener) {
         this.data = data;
         this.clickListener = clickListener;
+        this.longClickListener = longClickListener;
     }
 
     @NonNull
@@ -29,7 +32,7 @@ public class FavouriteRecyclerAdapter
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.quotation_list_row, parent, false);
-        FavouriteRecyclerAdapter.ViewHolder holder = new ViewHolder(view, clickListener);
+        FavouriteRecyclerAdapter.ViewHolder holder = new ViewHolder(view, clickListener, longClickListener);
         return holder;
     }
 
@@ -46,6 +49,10 @@ public class FavouriteRecyclerAdapter
 
     public Quotation getQuotationAt(int position){return data.get(position);}
 
+    public void removeQuotationAt(int position){
+        data.remove(position);
+        notifyItemRemoved(position);
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -53,15 +60,22 @@ public class FavouriteRecyclerAdapter
         public TextView tvQuote;
         public TextView tvAuthorName;
 
-        public ViewHolder(View view, OnItemClickListener listener) {
+        public ViewHolder(View view, OnItemClickListener clickListener, OnItemLongClickListener longClickListener) {
             super(view);
+
             tvQuote = view.findViewById(R.id.tvRowQuote);
             tvAuthorName = view.findViewById(R.id.tvRowAuthor);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClickListener(FavouriteRecyclerAdapter.this, getAdapterPosition());
+                    clickListener.onItemClickListener(FavouriteRecyclerAdapter.this, getAdapterPosition());
+                }
+            });
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return longClickListener.onItemLongClickListener(FavouriteRecyclerAdapter.this, getAdapterPosition());
                 }
             });
 
@@ -70,6 +84,10 @@ public class FavouriteRecyclerAdapter
 
     public interface OnItemClickListener{
         void onItemClickListener(FavouriteRecyclerAdapter adapter, int position);
+    }
+
+    public interface OnItemLongClickListener{
+        boolean onItemLongClickListener(FavouriteRecyclerAdapter adapter, int position);
     }
 
 }

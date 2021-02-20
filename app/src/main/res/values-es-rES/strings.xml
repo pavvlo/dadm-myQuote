@@ -20,4 +20,7 @@
     <string name="english">Inglés</string>
     <string name="russian">Ruso</string>
     <string name="toast_unknown_author">El autor es anónimo</string>
+    <string name="dialog_delete_quotation_message">¿Estas seguro de que quieres borrar esta cita?</string>
+    <string name="yes">Si</string>
+    <string name="no" translatable="false">No</string>
 </resources>

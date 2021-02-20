@@ -1,5 +1,6 @@
 package pabmocpl.dadm.labs.myquote.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Adapter;
 import android.widget.Toast;
 
 import java.net.URLEncoder;
@@ -35,15 +37,27 @@ public class FavouriteActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         r.addItemDecoration(itemDecoration);
 
+
         FavouriteRecyclerAdapter recyclerAdapter = new FavouriteRecyclerAdapter(getMockQuotations(),
-                (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)));
+                (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)),
+                (adapter, position) -> showDialogAndDelete(adapter,position));
         r.setAdapter(recyclerAdapter);
+    }
+
+
+    private boolean showDialogAndDelete(FavouriteRecyclerAdapter adapter, int position) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage(R.string.dialog_delete_quotation_message);
+        alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> adapter.removeQuotationAt(position));
+        alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );
+        alertBuilder.create().show();
+        return true;
     }
 
     public void onAuthorInfoClick(Quotation quotation) {
         String authorName = URLEncoder.encode(quotation.getQuoteAuthor());
         if(authorName == ""){
-            Toast.makeText(this, R.string.toast_unknown_author, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.toast_unknown_author, Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
