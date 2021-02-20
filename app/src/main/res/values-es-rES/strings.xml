@@ -19,4 +19,5 @@
     <string name="about_pablo">Coctelera de citas by \n\n Pablo Mocholí \n\n pabmocpl@inf.upv.es \n\n 2021</string>
     <string name="english">Inglés</string>
     <string name="russian">Ruso</string>
+    <string name="toast_unknown_author">El autor es anónimo</string>
 </resources>

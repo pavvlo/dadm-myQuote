@@ -40,5 +40,7 @@
     <string name="settings_name_label">Name that identifies the user</string>
     <string name="settings_name_text">Insert your name</string>
 
+    <string name="toast_unknown_author">The author is unknown</string>
+
 
 </resources>

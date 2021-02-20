@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -36,21 +39,20 @@ public class FavouriteActivity extends AppCompatActivity {
         r.addItemDecoration(itemDecoration);
 
         FavouriteRecyclerAdapter adapter = new FavouriteRecyclerAdapter(getMockQuotations(),
-                new FavouriteRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClickListener(int position) {
-                onAuthorInfoClick(FavouriteRecyclerAdapter.getQuotationAt(position));
-            }
-        });
+                position -> onAuthorInfoClick(this, FavouriteRecyclerAdapter.getQuotationAt(position)));
         r.setAdapter(adapter);
     }
 
-    public void onAuthorInfoClick(Quotation quotation) {
+    public void onAuthorInfoClick(Context context, Quotation quotation) {
         String authorName = URLEncoder.encode(quotation.getQuoteAuthor());
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + authorName));
-        startActivity(intent);
+        if(authorName == ""){
+            Toast.makeText(context,R.string.toast_unknown_author, Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + authorName));
+            startActivity(intent);
+        }
     }
 
     public ArrayList<Quotation> getMockQuotations() {
@@ -70,6 +72,13 @@ public class FavouriteActivity extends AppCompatActivity {
         list.add(new Quotation("I write to discover what I know.", "Flannery O'Connor"));
         list.add(new Quotation("Writers live twice.", "Natalie Goldberg"));
         list.add(new Quotation("Writing is its own reward.", "Henry Miller"));
+
+        Quotation qNull = new Quotation();
+        qNull.setQuoteText("This is a null author");
+        list.add(qNull);
+
+        list.add(new Quotation("This is an empty author", ""));
+
         return list;
     }
 
