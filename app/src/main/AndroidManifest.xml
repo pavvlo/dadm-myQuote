@@ -11,23 +11,42 @@
         android:theme="@style/Theme.MyQuote">
         <activity
             android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.DashboardActivity"
             android:label="@string/settings"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity"/>
+        </activity>
         <activity
             android:name=".activities.AboutActivity"
-            android:label="@string/about" />
+            android:parentActivityName=".activities.DashboardActivity"
+            android:label="@string/about" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity"/>
+        </activity>
         <activity
             android:name=".activities.QuotationActivity"
-            android:label="@string/quote_random" />
+            android:parentActivityName=".activities.DashboardActivity"
+            android:label="@string/quote_random" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity"/>
+        </activity>
         <activity
             android:name=".activities.FavouriteActivity"
-            android:label="@string/quote_fav" />
+            android:parentActivityName=".activities.DashboardActivity"
+            android:label="@string/quote_fav" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity"/>
+        </activity>
         <activity
             android:name=".activities.DashboardActivity"
             android:label="@string/quote_shake">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
