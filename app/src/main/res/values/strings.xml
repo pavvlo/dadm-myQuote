@@ -45,6 +45,10 @@
     <string name="toast_unknown_author">The author is unknown</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="add">Add</string>
+    <string name="refresh">Refresh</string>
+    <string name="clear">Clear All</string>
+    <string name="dialog_delete_all_quotation_message">Are you sure that you want to delete ALL your favourite quotations?</string>
 
 
 </resources>

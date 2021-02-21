@@ -1,5 +1,6 @@
 package pabmocpl.dadm.labs.myquote.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -10,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Adapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URLEncoder;
@@ -21,6 +26,8 @@ import pabmocpl.dadm.labs.myquote.adapters.FavouriteRecyclerAdapter;
 import pabmocpl.dadm.labs.myquote.objects.Quotation;
 
 public class FavouriteActivity extends AppCompatActivity {
+
+    private FavouriteRecyclerAdapter favouriteRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +49,34 @@ public class FavouriteActivity extends AppCompatActivity {
                 (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)),
                 (adapter, position) -> showDialogAndDelete(adapter,position));
         r.setAdapter(recyclerAdapter);
+        favouriteRecyclerAdapter = recyclerAdapter;
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_favourite, menu);
+        RecyclerView recyclerView = findViewById(R.id.rvFavourite);
+        if(favouriteRecyclerAdapter.getItemCount()==0){menu.findItem(R.id.miDeleteAll).setVisible(false);}
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.miDeleteAll:
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                alertBuilder.setMessage(R.string.dialog_delete_all_quotation_message);
+                alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> {
+                    favouriteRecyclerAdapter.removeAllQuotations();
+                    item.setVisible(false);
+                });
+                alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );
+                alertBuilder.create().show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private boolean showDialogAndDelete(FavouriteRecyclerAdapter adapter, int position) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);

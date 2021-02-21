@@ -1,8 +1,13 @@
 package pabmocpl.dadm.labs.myquote.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,14 +27,27 @@ public class QuotationActivity extends AppCompatActivity {
         tvQuotation.setText(data.replaceAll("%1s", getString(R.string.sample_name)));
 
         TextView tvAuthor = findViewById(R.id.tvAuthor);
-        ImageButton refreshButton = findViewById(R.id.ibRefresh);
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvQuotation.setText(R.string.sample_quote);
-                tvAuthor.setText(R.string.sample_author);
-            }
-        });
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_quotation, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        TextView tvQuotation = findViewById(R.id.tvQuotation);
+        TextView tvAuthor = findViewById(R.id.tvAuthor);
+        switch (item.getItemId()) {
+            case R.id.miAdd:
+                return true;
+            case R.id.miRefresh:
+                tvQuotation.setText(R.string.sample_quote);
+                tvAuthor.setText(R.string.sample_author);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

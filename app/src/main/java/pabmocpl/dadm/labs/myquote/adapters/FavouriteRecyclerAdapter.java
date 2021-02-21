@@ -1,6 +1,8 @@
 package pabmocpl.dadm.labs.myquote.adapters;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -52,6 +54,11 @@ public class FavouriteRecyclerAdapter
     public void removeQuotationAt(int position){
         data.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public void removeAllQuotations(){
+        data.clear();
+        notifyDataSetChanged();
     }
 
 
