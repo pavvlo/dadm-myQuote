@@ -20,10 +20,11 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/settings_name_label"
-            android:textSize="20sp"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/text_title" />
 
         <EditText
             android:id="@+id/etName"
@@ -32,9 +33,14 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/calido2"
             android:ems="10"
             android:hint="@string/settings_name_text"
             android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/granate_oro"
+            android:textColorLink="@color/calido2"
+            android:textCursorDrawable="?android:attr/textCursorDrawable"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +53,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:textSize="20sp"
+            style="@style/text_title"
             android:text="@string/settings_language_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +78,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:textSize="20sp"
+            style="@style/text_title"
             android:text="@string/settings_method_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,14 +99,18 @@
                 android:id="@+id/rbGet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/calido2"
                 android:checked="true"
-                android:text="@string/get" />
+                android:text="@string/get"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/rbPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/post" />
+                android:buttonTint="@color/calido2"
+                android:text="@string/post"
+                android:textColor="@color/black" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

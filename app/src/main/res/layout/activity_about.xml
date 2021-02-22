@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_pablo"
             android:textAlignment="center"
+            android:textColor="@color/calido2"
             android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@+id/ivPabloLeft"
             app:layout_constraintEnd_toEndOf="parent"
