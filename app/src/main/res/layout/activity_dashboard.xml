@@ -16,12 +16,12 @@
         android:layout_marginBottom="8dp"
         android:text="@string/quote_get"
         android:onClick="onDashboardButtonClick"
-        android:background="@drawable/buttons"
         app:layout_constraintBottom_toTopOf="@+id/bFavoriteQuotes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/dashboard_button" />
 
     <Button
         android:id="@+id/bFavoriteQuotes"
@@ -33,7 +33,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/quote_fav"
         android:onClick="onDashboardButtonClick"
-        android:background="@drawable/buttons"
+        style="@style/dashboard_button"
         app:layout_constraintBottom_toTopOf="@+id/bSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,7 +50,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/settings"
         android:onClick="onDashboardButtonClick"
-        android:background="@drawable/buttons"
+        style="@style/dashboard_button"
         app:layout_constraintBottom_toTopOf="@+id/bAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -67,7 +67,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/about"
         android:onClick="onDashboardButtonClick"
-        android:background="@drawable/buttons"
+        style="@style/dashboard_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -18,4 +18,9 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="dashboard_button">
+        <item name="android:textColor">@color/button_text</item>
+        <item name="android:background">@drawable/buttons</item>
+    </style>
+
 </resources>
