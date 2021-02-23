@@ -2,7 +2,9 @@ package pabmocpl.dadm.labs.myquote.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,10 +23,11 @@ public class QuotationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotation);
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView tvQuotation = findViewById(R.id.tvQuotation);
         String data = tvQuotation.getText().toString();
-        tvQuotation.setText(data.replaceAll("%1s", getString(R.string.sample_name)));
+        tvQuotation.setText(data.replaceAll("%1s",
+                preferences.getString("Name", getString(R.string.sample_name))));
 
         TextView tvAuthor = findViewById(R.id.tvAuthor);
 
