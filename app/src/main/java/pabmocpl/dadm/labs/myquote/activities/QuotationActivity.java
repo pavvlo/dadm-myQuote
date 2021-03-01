@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import android.content.ClipData;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +17,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import pabmocpl.dadm.labs.myquote.R;
+import pabmocpl.dadm.labs.myquote.databases.QuotationOpenHelper;
+import pabmocpl.dadm.labs.myquote.objects.Quotation;
 
 public class QuotationActivity extends AppCompatActivity {
 
+    private int quotationNumber = 0;
+    private Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        quotationNumber = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotation);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -37,6 +44,7 @@ public class QuotationActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_quotation, menu);
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -44,12 +52,22 @@ public class QuotationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         TextView tvQuotation = findViewById(R.id.tvQuotation);
         TextView tvAuthor = findViewById(R.id.tvAuthor);
+        Quotation quotation;
         switch (item.getItemId()) {
             case R.id.miAdd:
+                quotation = new Quotation(tvQuotation.getText().toString(), tvAuthor.getText().toString());
+                QuotationOpenHelper.getInstance(this).addQuotation(quotation);
+                item.setVisible(false);
                 return true;
             case R.id.miRefresh:
-                tvQuotation.setText(R.string.sample_quote);
-                tvAuthor.setText(R.string.sample_author);
+
+                quotation = new Quotation(getString(R.string.sample_quote)+" "+quotationNumber, getString(R.string.sample_author));
+                quotationNumber++;
+                tvQuotation.setText(quotation.getQuoteText());
+                tvAuthor.setText(quotation.getQuoteAuthor());
+
+                menu.findItem(R.id.miAdd).setVisible(!QuotationOpenHelper.getInstance(this).hasQuotation(quotation));
+
                 return true;
         }
         return super.onOptionsItemSelected(item);

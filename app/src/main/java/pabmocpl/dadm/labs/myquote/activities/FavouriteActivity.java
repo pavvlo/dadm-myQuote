@@ -20,9 +20,11 @@ import android.widget.Toast;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import pabmocpl.dadm.labs.myquote.R;
 import pabmocpl.dadm.labs.myquote.adapters.FavouriteRecyclerAdapter;
+import pabmocpl.dadm.labs.myquote.databases.QuotationOpenHelper;
 import pabmocpl.dadm.labs.myquote.objects.Quotation;
 
 public class FavouriteActivity extends AppCompatActivity {
@@ -34,8 +36,6 @@ public class FavouriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
 
-
-
         RecyclerView r = findViewById(R.id.rvFavourite);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -44,8 +44,9 @@ public class FavouriteActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         r.addItemDecoration(itemDecoration);
 
+        List<Quotation> quotationList = QuotationOpenHelper.getInstance(this).getAllQuotations();
 
-        FavouriteRecyclerAdapter recyclerAdapter = new FavouriteRecyclerAdapter(getMockQuotations(),
+        FavouriteRecyclerAdapter recyclerAdapter = new FavouriteRecyclerAdapter(quotationList,
                 (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)),
                 (adapter, position) -> showDialogAndDelete(adapter,position));
         r.setAdapter(recyclerAdapter);
@@ -69,6 +70,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 alertBuilder.setMessage(R.string.dialog_delete_all_quotation_message);
                 alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> {
                     favouriteRecyclerAdapter.removeAllQuotations();
+                    QuotationOpenHelper.getInstance(this).deleteAllQuotations();
                     item.setVisible(false);
                 });
                 alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );
@@ -81,7 +83,10 @@ public class FavouriteActivity extends AppCompatActivity {
     private boolean showDialogAndDelete(FavouriteRecyclerAdapter adapter, int position) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setMessage(R.string.dialog_delete_quotation_message);
-        alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> adapter.removeQuotationAt(position));
+        alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            QuotationOpenHelper.getInstance(this).deleteQuotation(adapter.getQuotationAt(position));
+            adapter.removeQuotationAt(position);
+        });
         alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );
         alertBuilder.create().show();
         return true;
