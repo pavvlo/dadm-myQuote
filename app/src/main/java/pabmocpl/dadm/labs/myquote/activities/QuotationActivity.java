@@ -18,12 +18,16 @@ import android.widget.TextView;
 
 import pabmocpl.dadm.labs.myquote.R;
 import pabmocpl.dadm.labs.myquote.databases.QuotationOpenHelper;
+import pabmocpl.dadm.labs.myquote.databases.QuotationRoomDatabase;
 import pabmocpl.dadm.labs.myquote.objects.Quotation;
+import androidx.preference.PreferenceFragmentCompat;
+
 
 public class QuotationActivity extends AppCompatActivity {
 
     private int quotationNumber = 0;
     private Menu menu;
+    private int databaseAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,10 @@ public class QuotationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotation);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        databaseAccess = Integer.parseInt(preferences.getString(getString(R.string.pref_database_key), "0"));
         TextView tvQuotation = findViewById(R.id.tvQuotation);
         String data = tvQuotation.getText().toString();
-        String name = preferences.getString("pref_name", getString(R.string.sample_name));
+        String name = preferences.getString(getString(R.string.pref_name_key), getString(R.string.sample_name));
         if(name.trim().equals("")) {name = getString(R.string.sample_name);}
         tvQuotation.setText(data.replaceAll("%1s", name));
 
@@ -56,7 +61,11 @@ public class QuotationActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.miAdd:
                 quotation = new Quotation(tvQuotation.getText().toString(), tvAuthor.getText().toString());
-                QuotationOpenHelper.getInstance(this).addQuotation(quotation);
+                if(databaseAccess == 0) {
+                    QuotationOpenHelper.getInstance(this).addQuotation(quotation);
+                }else {
+                    QuotationRoomDatabase.getInstance(this).quotationDAO().addQuotation(quotation);
+                }
                 item.setVisible(false);
                 return true;
             case R.id.miRefresh:
@@ -65,8 +74,15 @@ public class QuotationActivity extends AppCompatActivity {
                 quotationNumber++;
                 tvQuotation.setText(quotation.getQuoteText());
                 tvAuthor.setText(quotation.getQuoteAuthor());
-
-                menu.findItem(R.id.miAdd).setVisible(!QuotationOpenHelper.getInstance(this).hasQuotation(quotation));
+                if(databaseAccess == 0) {
+                    menu.findItem(R.id.miAdd).setVisible(!QuotationOpenHelper.getInstance(this).hasQuotation(quotation));
+                }else {
+                    menu.findItem(R.id.miAdd).setVisible(
+                            QuotationRoomDatabase
+                                    .getInstance(this)
+                                    .quotationDAO()
+                                    .getQuotation(quotation.getQuoteText()) == null);
+                }
 
                 return true;
         }

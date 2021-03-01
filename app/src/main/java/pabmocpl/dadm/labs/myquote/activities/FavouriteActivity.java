@@ -3,12 +3,14 @@ package pabmocpl.dadm.labs.myquote.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,11 +27,13 @@ import java.util.List;
 import pabmocpl.dadm.labs.myquote.R;
 import pabmocpl.dadm.labs.myquote.adapters.FavouriteRecyclerAdapter;
 import pabmocpl.dadm.labs.myquote.databases.QuotationOpenHelper;
+import pabmocpl.dadm.labs.myquote.databases.QuotationRoomDatabase;
 import pabmocpl.dadm.labs.myquote.objects.Quotation;
 
 public class FavouriteActivity extends AppCompatActivity {
 
     private FavouriteRecyclerAdapter favouriteRecyclerAdapter;
+    private int databaseAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +48,14 @@ public class FavouriteActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         r.addItemDecoration(itemDecoration);
 
-        List<Quotation> quotationList = QuotationOpenHelper.getInstance(this).getAllQuotations();
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        databaseAccess = Integer.parseInt(preferences.getString(getString(R.string.pref_database_key), "0"));
+        List<Quotation> quotationList;
+        if(databaseAccess == 0) {
+           quotationList = QuotationOpenHelper.getInstance(this).getAllQuotations();
+        } else {
+            quotationList = QuotationRoomDatabase.getInstance(this).quotationDAO().getAllQuotations();
+        }
         FavouriteRecyclerAdapter recyclerAdapter = new FavouriteRecyclerAdapter(quotationList,
                 (adapter, position) -> onAuthorInfoClick(adapter.getQuotationAt(position)),
                 (adapter, position) -> showDialogAndDelete(adapter,position));
@@ -70,8 +80,12 @@ public class FavouriteActivity extends AppCompatActivity {
                 alertBuilder.setMessage(R.string.dialog_delete_all_quotation_message);
                 alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> {
                     favouriteRecyclerAdapter.removeAllQuotations();
-                    QuotationOpenHelper.getInstance(this).deleteAllQuotations();
-                    item.setVisible(false);
+                    if(databaseAccess == 0) {
+                        QuotationOpenHelper.getInstance(this).deleteAllQuotations();
+                    } else {
+                        QuotationRoomDatabase.getInstance(this).quotationDAO().deleteAllQuotations();
+                    }
+                        item.setVisible(false);
                 });
                 alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );
                 alertBuilder.create().show();
@@ -84,7 +98,11 @@ public class FavouriteActivity extends AppCompatActivity {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setMessage(R.string.dialog_delete_quotation_message);
         alertBuilder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            QuotationOpenHelper.getInstance(this).deleteQuotation(adapter.getQuotationAt(position));
+            if(databaseAccess == 0) {
+                QuotationOpenHelper.getInstance(this).deleteQuotation(adapter.getQuotationAt(position));
+            } else {
+                QuotationRoomDatabase.getInstance(this).quotationDAO().deleteQuotation(adapter.getQuotationAt(position));
+            }
             adapter.removeQuotationAt(position);
         });
         alertBuilder.setNegativeButton(R.string.no, (dialog, which) -> {} );

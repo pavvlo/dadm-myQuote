@@ -16,4 +16,12 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+    <string-array name="preferences_database">
+        <item>@string/sqlite</item>
+        <item>@string/room</item>
+    </string-array>
+    <string-array name="preferences_database_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 </resources>

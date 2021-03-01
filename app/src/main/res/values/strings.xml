@@ -60,4 +60,13 @@
     <string name="pref_database_d">Database will be accessed following the selected method</string>
     <string name="web_service_category">Web service</string>
     <string name="database_category">Database</string>
+    <string name="sqlite" translatable="false">SQLiteOpenHelper</string>
+    <string name="room" translatable="false">Room</string>
+
+    <string name="pref_database_key" translatable="false">pref_database</string>
+    <string name="pref_name_key" translatable="false">pref_name</string>
+    <string name="pref_language_key" translatable="false">pref_language</string>
+    <string name="pref_method_key" translatable="false">pref_method</string>
+
+
 </resources>

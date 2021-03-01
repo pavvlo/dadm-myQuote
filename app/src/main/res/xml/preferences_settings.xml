@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
-        android:key="pref_name"
+        android:key="@string/pref_name_key"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="@string/pref_name_d"
@@ -13,15 +13,25 @@
             android:defaultValue="0"
             android:entries="@array/preferences_language"
             android:entryValues="@array/preferences_language_values"
-            android:key="pref_language"
+            android:key="@string/pref_language_key"
             android:summary="@string/pref_language_d"
             android:title="@string/pref_language" />
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/preferences_method"
             android:entryValues="@array/preferences_method_values"
-            android:key="pref_method"
+            android:key="@string/pref_method_key"
             android:summary="@string/pref_method_d"
             android:title="@string/pref_method" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/database_category">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/preferences_database"
+            android:entryValues="@array/preferences_database_values"
+            android:key="@string/pref_database_key"
+            android:summary="@string/pref_database_d"
+            android:title="@string/pref_database" />
     </PreferenceCategory>
 </PreferenceScreen>
