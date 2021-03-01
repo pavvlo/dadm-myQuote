@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="quote_language">
+    <string-array name="preferences_language">
         <item>@string/english</item>
         <item>@string/russian</item>
-    </array>
+    </string-array>
+    <string-array name="preferences_language_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="preferences_method">
+        <item>@string/get</item>
+        <item>@string/post</item>
+    </string-array>
+    <string-array name="preferences_method_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="pref_name"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/pref_name_d"
+        android:title="@string/pref_name" />
+    <PreferenceCategory android:title="@string/web_service_category">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/preferences_language"
+            android:entryValues="@array/preferences_language_values"
+            android:key="pref_language"
+            android:summary="@string/pref_language_d"
+            android:title="@string/pref_language" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/preferences_method"
+            android:entryValues="@array/preferences_method_values"
+            android:key="pref_method"
+            android:summary="@string/pref_method_d"
+            android:title="@string/pref_method" />
+    </PreferenceCategory>
+</PreferenceScreen>

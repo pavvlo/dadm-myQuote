@@ -44,11 +44,20 @@
 
     <string name="toast_unknown_author">The author is unknown</string>
     <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="no" translatable="false">No</string>
     <string name="add">Add</string>
     <string name="refresh">Refresh</string>
-    <string name="clear">Clear All</string>
+    <string name="clear">Clear all</string>
     <string name="dialog_delete_all_quotation_message">Are you sure that you want to delete ALL your favourite quotations?</string>
 
-
+    <string name="pref_name">User name</string>
+    <string name="pref_name_d">Name that identifies the user</string>
+    <string name="pref_language">Quotation language</string>
+    <string name="pref_language_d">Quotations will be received in the selected language</string>
+    <string name="pref_method">HTTP request method</string>
+    <string name="pref_method_d">Web requests will be performed using the selected HTTP method</string>
+    <string name="pref_database">Database access method</string>
+    <string name="pref_database_d">Database will be accessed following the selected method</string>
+    <string name="web_service_category">Web service</string>
+    <string name="database_category">Database</string>
 </resources>

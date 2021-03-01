@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bSettings"
         app:layout_constraintEnd_toStartOf="@+id/bFavoriteQuotes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/dashboard_button"/>
 
     <Button
         android:id="@+id/bFavoriteQuotes"
@@ -34,7 +35,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bGetQuotes"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/dashboard_button"/>
 
     <Button
         android:id="@+id/bSettings"
@@ -49,7 +51,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bAbout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bGetQuotes" />
+        app:layout_constraintTop_toBottomOf="@+id/bGetQuotes"
+        style="@style/dashboard_button"/>
 
     <Button
         android:id="@+id/bAbout"
@@ -66,5 +69,6 @@
         app:layout_constraintHorizontal_bias="0.899"
         app:layout_constraintStart_toEndOf="@+id/bSettings"
         app:layout_constraintTop_toBottomOf="@+id/bFavoriteQuotes"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.699"
+        style="@style/dashboard_button"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

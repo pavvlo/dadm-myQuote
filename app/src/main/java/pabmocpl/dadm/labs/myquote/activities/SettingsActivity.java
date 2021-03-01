@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import pabmocpl.dadm.labs.myquote.R;
+import pabmocpl.dadm.labs.myquote.fragments.SettingsFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -18,23 +19,25 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String name = preferences.getString("Name", "");
-        EditText etName = findViewById(R.id.etName);
-        etName.setText(name);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fcvSettings, SettingsFragment.class, null)
+                .commit();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        /*
         SharedPreferences.Editor editor = preferences.edit();
         EditText etName = findViewById(R.id.etName);
 
         if ((etName.getText().length() > 0)) {
-            editor.putString("Name", etName.getText().toString());
+            editor.putString("pref_name", etName.getText().toString());
         } else {
-            editor.remove("Name");
+            editor.remove("pref_name");
         }
 
-        editor.apply();
+        editor.apply();*/
     }
 }

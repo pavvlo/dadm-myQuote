@@ -26,8 +26,9 @@ public class QuotationActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView tvQuotation = findViewById(R.id.tvQuotation);
         String data = tvQuotation.getText().toString();
-        tvQuotation.setText(data.replaceAll("%1s",
-                preferences.getString("Name", getString(R.string.sample_name))));
+        String name = preferences.getString("pref_name", getString(R.string.sample_name));
+        if(name.trim().equals("")) {name = getString(R.string.sample_name);}
+        tvQuotation.setText(data.replaceAll("%1s", name));
 
         TextView tvAuthor = findViewById(R.id.tvAuthor);
 
