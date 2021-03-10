@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pabmocpl.dadm.labs.myquote">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,36 +14,36 @@
         android:theme="@style/Theme.MyQuote">
         <activity
             android:name=".activities.SettingsActivity"
-            android:parentActivityName=".activities.DashboardActivity"
             android:label="@string/settings"
+            android:parentActivityName=".activities.DashboardActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.DashboardActivity"/>
+                android:value=".activities.DashboardActivity" />
         </activity>
         <activity
             android:name=".activities.AboutActivity"
-            android:parentActivityName=".activities.DashboardActivity"
-            android:label="@string/about" >
+            android:label="@string/about"
+            android:parentActivityName=".activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.DashboardActivity"/>
+                android:value=".activities.DashboardActivity" />
         </activity>
         <activity
             android:name=".activities.QuotationActivity"
-            android:parentActivityName=".activities.DashboardActivity"
-            android:label="@string/quote_random" >
+            android:label="@string/quote_random"
+            android:parentActivityName=".activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.DashboardActivity"/>
+                android:value=".activities.DashboardActivity" />
         </activity>
         <activity
             android:name=".activities.FavouriteActivity"
-            android:parentActivityName=".activities.DashboardActivity"
-            android:label="@string/quote_fav" >
+            android:label="@string/quote_fav"
+            android:parentActivityName=".activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.DashboardActivity"/>
+                android:value=".activities.DashboardActivity" />
         </activity>
         <activity
             android:name=".activities.DashboardActivity"

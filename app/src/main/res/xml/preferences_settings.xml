@@ -10,14 +10,14 @@
     <PreferenceCategory android:title="@string/web_service_category">
 
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="en"
             android:entries="@array/preferences_language"
             android:entryValues="@array/preferences_language_values"
             android:key="@string/pref_language_key"
             android:summary="@string/pref_language_d"
             android:title="@string/pref_language" />
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="GET"
             android:entries="@array/preferences_method"
             android:entryValues="@array/preferences_method_values"
             android:key="@string/pref_method_key"

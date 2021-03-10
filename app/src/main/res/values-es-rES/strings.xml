@@ -36,4 +36,5 @@
     <string name="pref_database_d">Se accederá a la base de datos con este método</string>
     <string name="web_service_category">Servicios web</string>
     <string name="database_category">Base de datos</string>
+    <string name="toast_no_network">No hay red disponible</string>
 </resources>

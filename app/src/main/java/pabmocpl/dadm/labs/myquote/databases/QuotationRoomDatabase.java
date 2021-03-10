@@ -3,7 +3,6 @@ package pabmocpl.dadm.labs.myquote.databases;
 import android.content.Context;
 
 import androidx.room.Database;
-import androidx.room.Entity;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
@@ -14,18 +13,17 @@ public abstract class QuotationRoomDatabase extends RoomDatabase {
 
     private static QuotationRoomDatabase instance;
 
-    public static synchronized QuotationRoomDatabase getInstance(Context context){
-        if(instance == null) {
-            instance = Room.databaseBuilder(
-                    context, QuotationRoomDatabase.class, "quotation_database")
-                    .allowMainThreadQueries()
+    public static synchronized QuotationRoomDatabase getInstance(Context context) {
+        if (instance == null) {
+            instance = Room
+                    .databaseBuilder(context, QuotationRoomDatabase.class, "quotation_database")
                     .build();
         }
         return instance;
     }
 
-    public static void destroyInstance(){
-        if(instance != null && instance.isOpen()){
+    public static void destroyInstance() {
+        if (instance != null && instance.isOpen()) {
             instance.close();
             instance = null;
         }

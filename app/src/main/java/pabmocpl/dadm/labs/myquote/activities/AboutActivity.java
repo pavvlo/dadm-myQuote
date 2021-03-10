@@ -1,8 +1,8 @@
 package pabmocpl.dadm.labs.myquote.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import pabmocpl.dadm.labs.myquote.R;
 

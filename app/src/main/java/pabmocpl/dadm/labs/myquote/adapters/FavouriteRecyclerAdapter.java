@@ -1,8 +1,6 @@
 package pabmocpl.dadm.labs.myquote.adapters;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -49,18 +47,32 @@ public class FavouriteRecyclerAdapter
         return data.size();
     }
 
-    public Quotation getQuotationAt(int position){return data.get(position);}
+    public Quotation getQuotationAt(int position) {
+        return data.get(position);
+    }
 
-    public void removeQuotationAt(int position){
+    public void removeQuotationAt(int position) {
         data.remove(position);
         notifyItemRemoved(position);
     }
 
-    public void removeAllQuotations(){
+    public void removeAllQuotations() {
         data.clear();
         notifyDataSetChanged();
     }
 
+    public void addData(List<Quotation> quotationList) {
+        this.data.addAll(quotationList);
+        notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClickListener(FavouriteRecyclerAdapter adapter, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClickListener(FavouriteRecyclerAdapter adapter, int position);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -87,14 +99,6 @@ public class FavouriteRecyclerAdapter
             });
 
         }
-    }
-
-    public interface OnItemClickListener{
-        void onItemClickListener(FavouriteRecyclerAdapter adapter, int position);
-    }
-
-    public interface OnItemLongClickListener{
-        boolean onItemLongClickListener(FavouriteRecyclerAdapter adapter, int position);
     }
 
 }

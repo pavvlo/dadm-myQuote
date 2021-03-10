@@ -5,16 +5,16 @@
         <item>@string/russian</item>
     </string-array>
     <string-array name="preferences_language_values">
-        <item>0</item>
-        <item>1</item>
+        <item>en</item>
+        <item>ru</item>
     </string-array>
     <string-array name="preferences_method">
         <item>@string/get</item>
         <item>@string/post</item>
     </string-array>
     <string-array name="preferences_method_values">
-        <item>0</item>
-        <item>1</item>
+        <item>GET</item>
+        <item>POST</item>
     </string-array>
     <string-array name="preferences_database">
         <item>@string/sqlite</item>
