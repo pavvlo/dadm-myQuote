@@ -30,13 +30,19 @@ public class Quotation {
         this.quoteAuthor = quoteAuthor;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @NonNull
     public String getQuoteText() {
         return quoteText;
     }
+
     public void setQuoteText(@NonNull String quoteText) {
         this.quoteText = quoteText;
     }
@@ -44,6 +50,7 @@ public class Quotation {
     public String getQuoteAuthor() {
         return quoteAuthor;
     }
+
     public void setQuoteAuthor(String quoteAuthor) {
         this.quoteAuthor = quoteAuthor;
     }

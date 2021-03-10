@@ -9,19 +9,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import pabmocpl.dadm.labs.myquote.objects.Quotation;
 import pabmocpl.dadm.labs.myquote.databases.QuotationContract.QuotationBaseColumns;
+import pabmocpl.dadm.labs.myquote.objects.Quotation;
 
 public class QuotationOpenHelper extends SQLiteOpenHelper {
 
     private static QuotationOpenHelper instance;
 
-    private QuotationOpenHelper(Context context){
+    private QuotationOpenHelper(Context context) {
         super(context, "quotation_database", null, 1);
     }
 
-    public static synchronized QuotationOpenHelper getInstance(Context context){
-        if(instance == null){
+    public static synchronized QuotationOpenHelper getInstance(Context context) {
+        if (instance == null) {
             instance = new QuotationOpenHelper(context);
         }
         return instance;
@@ -46,7 +46,7 @@ public class QuotationOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<Quotation> getAllQuotations(){
+    public List<Quotation> getAllQuotations() {
         List<Quotation> quotationList = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
@@ -55,8 +55,10 @@ public class QuotationOpenHelper extends SQLiteOpenHelper {
                 new String[]{QuotationBaseColumns.COLUMN_QUOTATION, QuotationBaseColumns.COLUMN_AUTHOR},
                 null, null, null, null, null);
 
-        while(cursor.moveToNext()){
-            quotationList.add(new Quotation(cursor.getString(0),cursor.getString(1)));
+        while (cursor.moveToNext()) {
+            quotationList.add(new Quotation(
+                    cursor.getString(0),
+                    cursor.getString(1)));
         }
 
         cursor.close();
@@ -64,12 +66,12 @@ public class QuotationOpenHelper extends SQLiteOpenHelper {
         return quotationList;
     }
 
-    public boolean hasQuotation(Quotation quotation){
+    public boolean hasQuotation(Quotation quotation) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 QuotationBaseColumns.TABLE_NAME,
                 null,
-                QuotationBaseColumns.COLUMN_QUOTATION+"=?",
+                QuotationBaseColumns.COLUMN_QUOTATION + "=?",
                 new String[]{quotation.getQuoteText()},
                 null, null, null);
         boolean hasQuotation = cursor.getCount() > 0;
@@ -88,16 +90,16 @@ public class QuotationOpenHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteAllQuotations(){
+    public void deleteAllQuotations() {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(QuotationBaseColumns.TABLE_NAME, null, null);
         db.close();
     }
 
-    public void deleteQuotation(Quotation quotation){
+    public void deleteQuotation(Quotation quotation) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(QuotationBaseColumns.TABLE_NAME,
-                QuotationBaseColumns.COLUMN_QUOTATION+"=?",
+                QuotationBaseColumns.COLUMN_QUOTATION + "=?",
                 new String[]{quotation.getQuoteText()});
         db.close();
     }
