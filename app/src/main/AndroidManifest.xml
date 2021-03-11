@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/my_quote_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/my_quote_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyQuote">
         <activity
@@ -47,7 +47,7 @@
         </activity>
         <activity
             android:name=".activities.DashboardActivity"
-            android:label="@string/quote_shake">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
